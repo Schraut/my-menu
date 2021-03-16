@@ -1,21 +1,48 @@
-import { StatusBar } from "expo-status-bar";
+import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Platform,
+  StatusBar,
+} from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// Screens for the bottom tab
+import { BreakfastScreen } from "./src/features/breakfast/screens/breakfast.screen";
+import { LunchScreen } from "./src/features/lunch/screens/lunch.screen";
+import { DinnerScreen } from "./src/features/dinner/screens/dinner.screen";
+// Variable for creating bottom tab navigator
+const Tab = createBottomTabNavigator();
+
+const isAndroid = Platform.OS === "android";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Start of my app :)</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen name="Breakfast" component={BreakfastScreen} />
+          <Tab.Screen name="Lunch" component={LunchScreen} />
+          <Tab.Screen name="Dinner" component={DinnerScreen} />
+        </Tab.Navigator>
+      </NavigationContainer>
+      <ExpoStatusBar style="auto" />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "yellow",
     alignItems: "center",
     justifyContent: "center",
+  },
+  text: {
+    fontSize: 50,
+    fontWeight: "bold",
   },
 });
