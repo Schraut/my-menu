@@ -1,5 +1,5 @@
-import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import React from "react";
+import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
+import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,17 +7,17 @@ import {
   SafeAreaView,
   Platform,
   StatusBar,
-} from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-// Screens for the bottom tab
-import { BreakfastScreen } from "./src/features/breakfast/screens/breakfast.screen";
-import { LunchScreen } from "./src/features/lunch/screens/lunch.screen";
-import { DinnerScreen } from "./src/features/dinner/screens/dinner.screen";
+} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// Bottom tab navigation
+import { BreakfastScreen } from './src/screens/breakfast.screen';
+import { LunchScreen } from './src/screens/lunch.screen';
+import { DinnerScreen } from './src/screens/dinner.screen';
 // Variable for creating bottom tab navigator
 const Tab = createBottomTabNavigator();
 
-const isAndroid = Platform.OS === "android";
+const isAndroid = Platform.OS === 'android';
 
 export default function App() {
   return (
@@ -37,12 +37,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "yellow",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: 'yellow',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   text: {
     fontSize: 50,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 });
