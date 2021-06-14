@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Text, FlatList } from 'react-native';
 
+// Compoonents
 import { Breakfast } from '../components/breakfast/breakfast.component';
+import FAButton from '../components/fab/fab.component'; // Floating Action Button
 
 export const BreakfastScreen = () => {
   const [dummyData, setDummyData] = useState([
@@ -41,6 +43,7 @@ export const BreakfastScreen = () => {
         }}
         keyExtractor={(item) => item.id}
       />
+      <FAButton />
     </>
   );
 };
