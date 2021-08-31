@@ -4,11 +4,11 @@ import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 
 const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
 
-export const Breakfast = () => (
+export const Breakfast = ({ item, image, data }) => (
   <>
     <Card>
       <Card.Title
-        title="Card Title"
+        title={dummyData}
         subtitle="Card Subtitle"
         left={LeftContent}
       />
@@ -16,7 +16,7 @@ export const Breakfast = () => (
         <Title>Card title</Title>
         <Paragraph>Card content</Paragraph>
       </Card.Content>
-      <Card.Cover source={{ uri: 'https://picsum.photos/701' }} />
+      {/* <Card.Cover source={} /> */}
       <Card.Actions>
         <Button>Cancel</Button>
         <Button>Ok</Button>
