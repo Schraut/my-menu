@@ -46,10 +46,15 @@ const dummyData = [
   },
 ];
 
-const Item = ({ title, image, description }) => (
+const Item = ({ title, image, description, navigation }) => (
   <View>
     <Text style={styles.text}>{title}</Text>
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => {
+        console.log({ title });
+        navigation.navigate('Breakfast');
+      }}
+    >
       <Image source={{ uri: image }} style={styles.image} />
     </TouchableOpacity>
     <Text>{description}</Text>
