@@ -6,12 +6,15 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
+  Modal,
 } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 
 // Compoonents
 //import { Breakfast } from '../components/breakfast/breakfast.component';
 import FAButton from '../components/fab/fab.component'; // Floating Action Button
+
+//import MealDetailModal from './MealDetailModal';
 
 const dummyData = [
   {
@@ -46,13 +49,12 @@ const dummyData = [
   },
 ];
 
-const Item = ({ title, image, description, navigation }) => (
+const Item = ({ title, image, description }) => (
   <View>
     <Text style={styles.text}>{title}</Text>
     <TouchableOpacity
       onPress={() => {
-        console.log({ title });
-        navigation.navigate('Breakfast');
+        openModal();
       }}
     >
       <Image source={{ uri: image }} style={styles.image} />
@@ -60,19 +62,28 @@ const Item = ({ title, image, description, navigation }) => (
     <Text>{description}</Text>
   </View>
 );
+
+// const openModal = () => {
+//   setIsAddMode(true);
+// };
+
 export const BreakfastScreen = () => {
   //const [dummyData, setDummyData] = useState(null);
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   const [searchQuery, setSearchQuery] = useState('');
 
   const onChangeSearch = (query) => setSearchQuery(query);
 
   const renderItem = ({ item }) => (
-    <Item
-      title={item.title}
-      image={item.image}
-      description={item.description}
-    />
+    <>
+      <Item
+        title={item.title}
+        image={item.image}
+        description={item.description}
+      />
+    </>
   );
   return (
     <>
@@ -86,7 +97,19 @@ export const BreakfastScreen = () => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
-      <FAButton />
+      <Modal
+        animationType="slide"
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
+          <Text style={styles.modalButton}>Close window</Text>
+        </TouchableOpacity>
+      </Modal>
+      <FAButton onPress={() => setModalVisible(!modalVisible)} />
     </>
   );
 };
@@ -102,5 +125,8 @@ const styles = StyleSheet.create({
     height: 400,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  modalButton: {
+    paddingTop: 200,
   },
 });

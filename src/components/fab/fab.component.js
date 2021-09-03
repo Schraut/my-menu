@@ -2,13 +2,8 @@ import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { FAB } from 'react-native-paper'; // Floating Action Button
 
-const FAButton = () => (
-  <FAB
-    style={styles.fab}
-    small
-    icon="plus"
-    onPress={() => console.log('Pressed')}
-  />
+const FAButton = (props) => (
+  <FAB style={styles.fab} small icon="plus" onPress={props.onPress} />
 );
 
 const styles = StyleSheet.create({
