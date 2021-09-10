@@ -5,8 +5,10 @@ import {
   View,
   Image,
   StyleSheet,
+  ScrollView,
   TouchableOpacity,
   Modal,
+  TextInput,
 } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 
@@ -54,7 +56,7 @@ const Item = ({ title, image, description }) => (
     <Text style={styles.text}>{title}</Text>
     <TouchableOpacity
       onPress={() => {
-        openModal();
+        console.log(title, image);
       }}
     >
       <Image source={{ uri: image }} style={styles.image} />
@@ -62,10 +64,6 @@ const Item = ({ title, image, description }) => (
     <Text>{description}</Text>
   </View>
 );
-
-// const openModal = () => {
-//   setIsAddMode(true);
-// };
 
 export const BreakfastScreen = () => {
   //const [dummyData, setDummyData] = useState(null);
@@ -97,17 +95,19 @@ export const BreakfastScreen = () => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
-      <Modal
-        animationType="slide"
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
-          <Text style={styles.modalButton}>Close window</Text>
-        </TouchableOpacity>
+      <Modal animationType="slide" visible={modalVisible}>
+        <ScrollView>
+          <Text style={styles.modal}>Add Meal</Text>
+          <Image
+            source={{ uri: 'https://picsum.photos/703' }}
+            style={styles.image}
+          />
+          <TextInput style={styles.input} placeholder="title" />
+          <TextInput style={styles.input} placeholder="Ingredients" />
+          <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
+            <Text style={styles.modalButton}>Cancel</Text>
+          </TouchableOpacity>
+        </ScrollView>
       </Modal>
       <FAButton onPress={() => setModalVisible(!modalVisible)} />
     </>
@@ -126,7 +126,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  modal: {
+    marginTop: 50,
+    textAlign: 'center',
+    fontSize: 30,
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  },
   modalButton: {
     paddingTop: 200,
+    fontSize: 40,
   },
 });
